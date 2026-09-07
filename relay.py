@@ -46,19 +46,25 @@ def ffmpeg_command(channel):
         "-hide_banner",
         "-loglevel",
         "error",
-        "-reconnect",
-        "1",
-        "-reconnect_streamed",
-        "1",
-        "-reconnect_delay_max",
-        "5",
     ]
-    if channel.get("loop", False):
-        command.extend(["-stream_loop", "-1"])
+    if channel["source"] == "test-pattern":
+        command.extend(["-re", "-f", "lavfi", "-i", "testsrc=size=352x288:rate=25"])
+    else:
+        command.extend(
+            [
+                "-reconnect",
+                "1",
+                "-reconnect_streamed",
+                "1",
+                "-reconnect_delay_max",
+                "5",
+            ]
+        )
+        if channel.get("loop", False):
+            command.extend(["-stream_loop", "-1"])
+        command.extend(["-i", channel["source"]])
     command.extend(
         [
-            "-i",
-            channel["source"],
             "-an",
             "-vf",
             "scale=352:288:force_original_aspect_ratio=decrease,pad=352:288:(ow-iw)/2:(oh-ih)/2",

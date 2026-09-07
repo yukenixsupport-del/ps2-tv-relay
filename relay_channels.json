@@ -1,8 +1,8 @@
 [
   {
-    "isim": "NOSTALJI TV",
+    "isim": "PS2 TEST YAYINI",
     "slug": "nostalji",
-    "source": "PUT_YOUR_LEGAL_SOURCE_URL_HERE",
+    "source": "test-pattern",
     "loop": false
   }
 ]
