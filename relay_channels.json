@@ -1,8 +1,9 @@
 [
   {
-    "isim": "PS2 TEST YAYINI",
+    "isim": "PS2 RADYO YAYINI",
     "slug": "nostalji",
-    "source": "test-pattern",
+    "source": "http://turkmedya.radyotvonline.com/turkmedya/alemfm.stream/playlist.m3u8",
     "loop": false
   }
 ]
+
