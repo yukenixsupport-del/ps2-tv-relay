@@ -1,0 +1,16 @@
+FROM python:3.12-slim
+
+WORKDIR /app
+
+# Gerekli kütüphane dosyasını önce kopyalayıp kuralım (önbellekleme optimizasyonu için)
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Uygulama kodumuzu kopyalayalım
+COPY app.py .
+
+ENV PORT=10000
+
+EXPOSE 10000
+
+CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:10000", "--threads", "4", "--timeout", "0"]
